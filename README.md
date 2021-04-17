@@ -12,9 +12,9 @@ This application supports the [Getting Started on Heroku with Node.js](https://d
 - all the above is already done and included in this repo (see the toh folder)
 - [provision a postgres database](https://devcenter.heroku.com/articles/getting-started-with-nodejs#provision-a-database)
 - create and initialize the `heroes` table:
-- `create table heroes (id integer, name text);`
-- `insert into test_table values (1, 'Giulio');`
-- `insert into test_table values (1, 'Eva');`
+- `heroku psql`
+- `create table heroes (id serial primary key, name text);`
+- `insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');`
 
 ## Running Locally
 
