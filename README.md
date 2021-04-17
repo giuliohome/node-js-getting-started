@@ -9,6 +9,7 @@ This application supports the [Getting Started on Heroku with Node.js](https://d
 - Delete `angular-in-memory-web-api` from `package.json` dependencies, delete file `in-memory-data.service.ts` and its import from `app.module.ts`
 - `ng build --base-href "/toh/" --prod`
 - deploy the `dist` folder renamed as `toh` under the public folder of this node.js app root (notice that the `index.js` is modified ad hoc to serve Angular)
+- all the above is already done and included in this repo (see the toh folder)
 - [provision a postgres database](https://devcenter.heroku.com/articles/getting-started-with-nodejs#provision-a-database)
 - create and initialize the `heroes` table:
 - `create table heroes (id integer, name text);`
