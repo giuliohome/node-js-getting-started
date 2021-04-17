@@ -11,10 +11,7 @@ This application supports the [Getting Started on Heroku with Node.js](https://d
 - deploy the `dist` folder renamed as `toh` under the public folder of this node.js app root (notice that the `index.js` is modified ad hoc to serve Angular)
 - all the above is already done and included in this repo (see the toh folder)
 - [provision a postgres database](https://devcenter.heroku.com/articles/getting-started-with-nodejs#provision-a-database)
-- create and initialize the `heroes` table:
-- `heroku psql`
-- `create table heroes (id serial primary key, name text);`
-- `insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');`
+- create and initialize the `heroes` table (see more below)
 
 ## Running Locally
 
@@ -27,6 +24,9 @@ $ git clone https://github.com/heroku/node-js-getting-started.git # or clone you
 $ cd node-js-getting-started
 $ npm install
 $ npm start
+$ psql -d myapp -U  data_owner
+myapp=> create table heroes (id serial primary key, name text);
+myapp=> `insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');`
 ```
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
@@ -36,7 +36,11 @@ Your app should now be running on [localhost:5000](http://localhost:5000/).
 ```
 $ heroku create
 $ git push heroku main
+$ heroku psql
+myapp::DATABASE=> create table heroes (id serial primary key, name text);
+myapp::DATABASE=> `insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');`
 $ heroku open toh
+
 ```
 or
 
