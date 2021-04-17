@@ -20,6 +20,8 @@ This application supports the [Getting Started on Heroku with Node.js](https://d
 
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
 
+You also need to have [Postgres installed locally](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
+
 ```sh
 $ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
 $ cd node-js-getting-started
@@ -29,12 +31,12 @@ $ npm start
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-## Deploying to Heroku
+## Deploying to Heroku and go to Angular demo
 
 ```
 $ heroku create
 $ git push heroku main
-$ heroku open
+$ heroku open toh
 ```
 or
 
