@@ -1,8 +1,14 @@
-# node-js-getting-started
+# Angular tour of heroes served from node-js-getting-started
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
 
 This application supports the [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+
+# Install and build Angular app
+Download toh-pt6.zip from https://angular.io/tutorial
+Delete angular-in-memory-web-api from package json dependencies, delete file in-memory-data.service and its import from app.module.ts
+ng build --base-href "/toh/" --prod
+deploy the dist folder renamed as toh under the public folder of this node.js app root
 
 ## Running Locally
 
