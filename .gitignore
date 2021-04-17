@@ -6,6 +6,8 @@ npm-debug.log
 *.env
 *.dev
 .DS_Store
+public/toh-pt6.zip
+public/toh-pt6
 
 # Docker
 Dockerfile
