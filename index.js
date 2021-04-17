@@ -54,20 +54,18 @@ const getHeroById = (request, response) => {
   })
 }
 const createHero = (request, response) => {
-  var reqBody = request.body;
-  console.log('create hero', reqBody)
+  const { name } = request.body;
 
-  pool.query('INSERT INTO heroes (name) VALUES ($1) RETURNING id', [reqBody.name], (error, results) => {
+  pool.query('INSERT INTO heroes (name) VALUES ($1) RETURNING id', [name], (error, results) => {
     if (error) {
       throw error
     }
     var newlyCreatedId = results.rows[0].id;
-    response.status(200).json({ "id": newlyCreatedId, "name": reqBody.name })
+    response.status(200).json({ "id": newlyCreatedId, "name": name })
   })
 }
 const updateHero = (request, response) => {
-  const id = parseInt(request.params.id)
-  const { name } = request.body
+  const { id, name } = request.body
 
   pool.query(
     'UPDATE heroes SET name = $1 WHERE id = $2',
@@ -114,10 +112,16 @@ express()
   .get('/toh', (req,res) => {
     res.sendFile(process.cwd()+"/public/toh/index.html")
   })
+  .get('/toh/heroes', (req,res) => {
+    res.sendFile(process.cwd()+"/public/toh/index.html")
+  })
+  .get('/toh/dashboard', (req,res) => {
+    res.sendFile(process.cwd()+"/public/toh/index.html")
+  })
   .get('/toh/api/heroes', getHeroes)
   .get('/toh/api/heroes/:id', getHeroById)
   .post('/toh/api/heroes', createHero)
-  .put('/toh/api/heroes/:id', updateHero)
+  .put('/toh/api/heroes', updateHero)
   .delete('/toh/api/heroes/:id', deleteHero)
   .get('/times', (req, res) => res.send(showTimes()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
