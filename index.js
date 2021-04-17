@@ -1,3 +1,4 @@
+var bodyParser = require('body-parser');
 const cool = require('cool-ascii-faces');
 const { Pool } = require('pg');
 /* const pool = new Pool({
@@ -92,6 +93,8 @@ const deleteHero = (request, response) => {
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
+  .use(bodyParser.json()) // for parsing application/json
+  .use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
