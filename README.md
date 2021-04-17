@@ -26,7 +26,7 @@ $ npm install
 $ npm start
 $ psql -d myapp -U  data_owner
 myapp=> create table heroes (id serial primary key, name text);
-myapp=> `insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');`
+myapp=> insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');
 ```
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
@@ -38,7 +38,7 @@ $ heroku create
 $ git push heroku main
 $ heroku psql
 myapp::DATABASE=> create table heroes (id serial primary key, name text);
-myapp::DATABASE=> `insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');`
+myapp::DATABASE=> insert into heroes(name) values ('Dr Nice'),('Narco'), ('Bombasto'),('Celeritas'),('Magneta'),('RubberMan');
 $ heroku open toh
 
 ```
