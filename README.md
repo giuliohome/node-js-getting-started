@@ -1,5 +1,9 @@
 # Angular tour of heroes served from node-js-getting-started
 
+This is my implementation of Angular CRUD rest api in Node.js with Heroku Postgres provisioning.
+
+You can find the implementation for SQLite and Oracle 19c in my other [Node.js Express repository](https://github.com/giuliohome/ngExpressAngular2Oracle).
+
 A barebones Node.js app using [Express 4](http://expressjs.com/).
 
 This application supports the [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
