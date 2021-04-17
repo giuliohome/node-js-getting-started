@@ -118,6 +118,9 @@ express()
   .get('/toh/dashboard', (req,res) => {
     res.sendFile(process.cwd()+"/public/toh/index.html")
   })
+  .all('/toh/detail/*', function(req, res) {
+    res.sendFile(process.cwd()+"/public/toh/index.html")
+  })
   .get('/toh/api/heroes', getHeroes)
   .get('/toh/api/heroes/:id', getHeroById)
   .post('/toh/api/heroes', createHero)
