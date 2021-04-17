@@ -28,6 +28,68 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
+
+const getHeroes = (request, response) => {
+  if (request.query && request.query.name) {
+      search = '%' + request.query.name + '%';
+  } else {
+      search = '%';
+  }
+  pool.query('SELECT * FROM heroes WHERE name LIKE $1 ORDER BY id ASC', [search], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+const getHeroById = (request, response) => {
+  const id = parseInt(request.params.id)
+
+  pool.query('SELECT * FROM heroes WHERE id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows[0])
+  })
+}
+const createHero = (request, response) => {
+  var reqBody = request.body;
+  console.log('create hero', reqBody)
+
+  pool.query('INSERT INTO heroes (name) VALUES ($1) RETURNING id', [reqBody.name], (error, results) => {
+    if (error) {
+      throw error
+    }
+    var newlyCreatedId = results.rows[0].id;
+    response.status(200).json({ "id": newlyCreatedId, "name": reqBody.name })
+  })
+}
+const updateHero = (request, response) => {
+  const id = parseInt(request.params.id)
+  const { name } = request.body
+
+  pool.query(
+    'UPDATE heroes SET name = $1 WHERE id = $2',
+    [name, id],
+    (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json({ "id": id, "name": name })
+    }
+  )
+}
+const deleteHero = (request, response) => {
+  const id = parseInt(request.params.id)
+
+  pool.query('DELETE FROM heroes WHERE id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).send(`Hero deleted with ID: ${id}`)
+  })
+}
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -49,6 +111,11 @@ express()
   .get('/toh', (req,res) => {
     res.sendFile(process.cwd()+"/public/toh/index.html")
   })
+  .get('/toh/api/heroes', getHeroes)
+  .get('/toh/api/heroes/:id', getHeroById)
+  .post('/toh/api/heroes', createHero)
+  .put('/toh/api/heroes/:id', updateHero)
+  .delete('/toh/api/heroes/:id', deleteHero)
   .get('/times', (req, res) => res.send(showTimes()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
@@ -60,4 +127,3 @@ express()
     }
     return result;
   }
-  
